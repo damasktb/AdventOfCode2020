@@ -3,7 +3,7 @@ width = len(open("Day3.txt").readline())
 snow = [list(line)[:-1] for line in open("Day3.txt")]
 
 def trees(right, down):
-	trees=0
+	trees = 0
 	x = 0
 	for y in range(0, height, down):
 		if snow[y][x] == "#":
