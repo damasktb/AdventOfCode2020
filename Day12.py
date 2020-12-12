@@ -9,8 +9,8 @@ for move, distance in moves:
     elif move == LEFT:
         facing *= (-1j) ** (distance/90)
     else:
-		multiplier = 1j if move == EAST else -1j if move == WEST else -1 if move == SOUTH else 1 if move == NORTH else facing
-		position += multiplier * distance
+	multiplier = 1j if move == EAST else -1j if move == WEST else -1 if move == SOUTH else 1 if move == NORTH else facing
+	position += multiplier * distance
 
 print(abs(position.real) + abs(position.imag))
 
@@ -24,7 +24,7 @@ for move, distance in moves:
     elif move == FORWARD:
     	position += waypoint * distance
     else:
-		multiplier = 1j if move == EAST else -1j if move == WEST else -1 if move == SOUTH else 1
-		waypoint += multiplier * distance
+	multiplier = 1j if move == EAST else -1j if move == WEST else -1 if move == SOUTH else 1
+	waypoint += multiplier * distance
 
 print(abs(position.real) + abs(position.imag))
