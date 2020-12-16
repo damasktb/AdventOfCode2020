@@ -17,25 +17,20 @@ for ticket in nearby.split("\n")[1:]:
 
 print invalid
 
-possible = {}
-for field in range(len(tickets[0])):
-	possible[field] = [rules for rules, ranges in valid.items() if all(v in ranges for v in zip(*tickets)[field])]
-
+possible = {field: [name for name, ranges in valid.items() if all(v in ranges for v in zip(*tickets)[field])] for field in range(len(tickets[0]))}
 certain = possible.copy()
 taken = set()
 while len(taken) != len(tickets[0]):
-	for field, candidate in possible.items():
-		if len(candidate) == 1:
-			taken.add(candidate[0])
+	for field, name in possible.items():
+		if len(name) == 1:
+			taken.add(name[0])
 		else:
-			for t in taken:
-				if t in certain[field]:
-					certain[field].remove(t)
+			for name in (t for t in taken if t in certain[field]):
+				certain[field].remove(name)
 
 total = 1
 mine = mine.split("\n")[1].split(",")
 for field, name in certain.items():
-	if name[0].startswith("departure"):
-		total *= int(mine[field])
+	total *= int(mine[field]) if name[0].startswith("departure") else 1
 
 print total
