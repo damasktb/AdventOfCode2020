@@ -4,7 +4,7 @@ rules, mine, nearby = open("Day16.txt").read().split("\n\n")
 
 valid = {}
 for rule in rules.split("\n"):
-	name = re.match(r"(\w+\s*\w+)", rule)[0]
+	name = re.match(r"(\w+\s*\w+)", rule).group(0)
 	valid[name] = [n for ranges in re.findall(r"(\d+)\-(\d+)", rule) for n in range(int(ranges[0]), int(ranges[1])+1)]
 
 invalid = 0
